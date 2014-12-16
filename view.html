@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Munibox Monitor</title>
+    <meta name="viewport" content="width=device-width, user-scalable=yes">
+	<link rel="shortcut icon" href="/images/munibox_icon.ico" type="image/x-icon" />
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+    <link rel='stylesheet' type='text/css' href='css/default.css'>
+    <link rel='stylesheet' type='text/css' href='css/munibox.css'>
+    <link rel='stylesheet' type='text/css' href='css/buttons.css'>
+  </head>
+  <body>
+    <center>
+    <div id=header>
+      <span id=logo class=muniboxoff>
+        <img id=imglogo src=images/munibox_xsm-01.png>
+      </span>
+      <span id=colo-id class=muniboxy>
+        Unit: <span id=mb_unit></span><br />
+        Location: <span id=mb_location></span><br />
+      </span>
+    </div>
+    <p>
+    <div id='munibox_status'>
+      <ul>
+         <li class="muniboxyB munibox_button" id=s1>s1</li>
+         <li class="muniboxyB munibox_button" id=s2>s2</li>
+         <li class="muniboxyB munibox_button" id=s3>s3</li>
+         <li class="muniboxyB munibox_button" id=s4>s4</li>
+      </ul>
+    </div>
+    </center>
+    <div id='messagesDiv'></div>
+    <div id='canvas'></div>
+
+    <div id='wrapper-control'>
+      <!-- http://www.w3schools.com/html/tryit.asp?filename=tryhtml5_input_type_range -->
+      <ul id='label-sliders' >
+        <li class=muniboxyR >full</li>
+        <li class=muniboxyG >empty</li>
+        <li class=muniboxyB >offline</li>
+      </ul><p />
+    </div>
+
+	<div id='other'>
+		<a href="cqview/index.html" class='button button-block button-rounded button-primary button-large'>Calling Queue</a>
+		<a href="orderview/index.html" class='button button-block button-rounded button-primary button-large'>Order View</a>
+	</div>
+    <script>
+      //
+      //  firebase hooks
+      //
+      var myDataRef = new Firebase('https://munibox-control.firebaseio.com/box/box-status');
+      myDataRef.on('child_added', function(snapshot) {
+        var message = snapshot.val();
+        console.log(message);
+        displayChatMessage(message.name, message.value);
+      });
+      function displayChatMessage(name, value) {
+        theSlot  = '#' + name;
+        theClass = "muniboxyB munibox_button";
+        if (value == 1) {theClass = "muniboxyR munibox_button";}
+        if (value == 0) {theClass = "muniboxyG munibox_button";}
+        console.log('theSlot:' + theSlot + ',theClass:' + theClass);
+        $(theSlot).removeClass().addClass(theClass);
+        theslider = '#button' + name;
+        //$(theslider).val(value);
+      };
+
+      //
+      // Unit Data hooks
+      //
+      var myInfoRef = new Firebase('https://munibox-control.firebaseio.com/box/box-info');
+      myInfoRef.set({unit: 'Mucker Capital', location: {street:'1212 B street', city:'Santa Monica, Ca'}});
+
+      myInfoRef.on('value', function(snapshot) {
+        var info = snapshot.val();
+        //console.log(info.unit);
+        displayInfo(info.unit, info.location.city);
+      });
+
+      function displayInfo(name, loc) {
+        //console.log('name:' + name)
+        $('#mb_unit').text(name);
+        $('#mb_location').text(loc);
+      };
+
+    </script>
+  </body>
+</html>

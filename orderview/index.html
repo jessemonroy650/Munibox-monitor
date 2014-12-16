@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Munibox Mockup</title>
+    <meta name="viewport" content="width=device-width, user-scalable=yes">
+    <link rel='stylesheet' type='text/css' href='css/default.css'>
+    <link rel='stylesheet' type='text/css' href='css/munibox.css'>
+    <link rel='stylesheet' type='text/css' href='css/buttons.css'>
+	<style>
+	li > span {background-color:white;padding:0.2em;}
+	#order_status {width:80%;}
+	</style>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+	<script src="basicDateFunctions.js"></script>
+  </head>
+  <body onload=init()>
+    <center>
+    <div id=header>
+      <span id=logo class=muniboxoff>
+        <img id=imglogo src=images/munibox_xsm-01.png>
+      </span>
+      <span id=colo-id class=muniboxy>
+        Customer: <span id=mb_customer></span><br />
+        Customer ID: <span id=mb_customerId></span><br />
+      </span>
+    </div>
+    <p >&nbsp; <p >
+    <div id='order_status'>
+      <ul>
+         <li class="muniboxyR munibox_button">Customer Order Id <span id=customerOrderId></span></li>
+         <li class="muniboxyG munibox_button">Our Order Id <span id=ourOrderId></span></li>
+         <li class="muniboxyG munibox_button">Our Order Date <span id=ourOrderDate></span></li>
+         <li class="muniboxyG munibox_button">Our Order Status <span id=ourOrderStatus></span></li>
+         <li class="muniboxyB munibox_button">Colo Delivery <span id=coloDelivery></span></li>
+         <li class="muniboxyB munibox_button">Recipient Pickup <span id=recipientPickup></span></li>
+         <li class="muniboxyB munibox_button">Recipient Phone <span id=recipientPhone></span></li>
+         <li class="muniboxyB munibox_button">SMS status <span id=smsStatus></span></li>
+         <li class="muniboxy munibox_button">Notes: <span id=notes></span></li>
+      </ul>
+    </div>
+
+    <script>
+      //
+      //  Customer Info hooks
+      //
+      var myDataRef = new Firebase('https://munibox-control.firebaseio.com/customers/customer-info');
+      myDataRef.set({customer: 'Good Eggs', customerId: 'good0001'});
+
+      myDataRef.on('value', function(snapshot) {
+        var info = snapshot.val();
+        displayCustomerInfo(info.customer, info.customerId);
+      });
+
+      function displayCustomerInfo(name, id) {
+        $('#mb_customer').text(name);
+        $('#mb_customerId').text(id);
+      };
+
+
+      //
+      // Customer Order hooks
+      //
+      var myInfoRef = new Firebase('https://munibox-control.firebaseio.com/customer/order-info');
+      myInfoRef.set({customerId: 'good0001',
+					customerOrderId: 'abc',
+					ourOrderId: '1234',
+					ourOrderDate: Date(),
+					ourOrderStatus: 'good',
+					coloDelivery: 'awaiting',
+					recipientPickup: 'not yet',
+					recipientPhone: '650-630-3105',
+					smsStatus: 'ready',
+					notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+					});
+
+      myInfoRef.on('value', function(snapshot) {
+        var info = snapshot.val();
+        //console.log(info.unit);
+        displayInfo(info);
+      });
+
+      function displayInfo(data) {
+        $('#coId').html(data.coId);
+        $('#coId').html(data.coId);
+        $('#orderId').html(data.ourId);
+        $('#customerOrderId').html(data.customerOrderId);
+        $('#ourOrderId').html(data.ourOrderId);
+        $('#ourOrderDate').html(data.ourOrderDate);
+        $('#ourOrderStatus').html(data.ourOrderStatus);
+        $('#coloDelivery').html(data.coloDelivery);
+        $('#recipientPickup').html(data.recipientPickup);
+        $('#recipientPhone').html(data.recipientPhone);
+        $('#smsStatus').html(data.smsStatus);
+        $('#notes').html(data.notes);
+      };
+
+    </script>
+  </body>
+</html>

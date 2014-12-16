@@ -1,0 +1,28 @@
+
+.controlBoxL {width:80%;height:2em;vertical-align:middle;align-content:center;text-align:center;float:left;}
+.controlBoxR {width:20%;height:2em;vertical-align:middle;align-content:center;text-align:center;float:right;}
+
+.faux-buttons {width:32%;align-content:center;display:inline-block;}
+
+/* this was a <div> instead of <span> because span does not have top and bottom margins */
+#shelfId {margin:5px;}
+
+/* http://davidwalsh.name/css-circles */
+.circle {
+border-radius:50%; 
+width:1em; height:1em;
+/* below here specific to this program */
+background-color: white;
+transition: all 0.5s linear;
+position: relative; left: 110px;
+margin:7px;
+}
+
+.red {background-color: red;}
+.green {background-color: #44ff44;}
+.blue {background-color: #4444ff;}
+
+/* Setup for phones and small screens only */
+@media only screen and (max-width:320px) {
+.circle {position: relative; left: 22px;}
+}

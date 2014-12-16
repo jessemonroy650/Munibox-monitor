@@ -1,0 +1,22 @@
+
+.controlBoxL {width:70%;float:left;}
+.controlBoxR {width:30%;float:right;}
+
+/* http://davidwalsh.name/css-circles */
+.circle {
+border-radius:50%; 
+width:1em; height:1em;
+margin:2.5px;
+position: relative; left: 100px;
+background-color: white;
+/* transition: all 2s ease; */
+}
+
+.red {background-color: red;}
+.green {background-color: green;}
+.blue {background-color: blue;}
+
+@media only screen and (max-width:320px) {
+.circle {position: relative; left: 25px;}
+.circle-roll {background-color:green;}
+}

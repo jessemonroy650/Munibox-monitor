@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns = "http://www.w3.org/ns/widgets"
+
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.munibox.muniboxMonitor"
+        version     = "0.9.1"
+        versionCode = "11" >
+
+        <!-- versionCode is optional and Android only -->
+        <preference name="phonegap-version" value="3.5.0" />
+
+        <name>Munibox Monitor  0.9.1</name>
+        <description>
+        Munibox monitor
+        </description>
+        <author href="http://bsdmasterindex.com" email="jessemonroy650@yahoo.com">
+        Jesse Monroy
+        </author>
+
+        <gap:platform name="android" />
+
+        <preference name="permissions" value="none"/>
+
+        <gap:plugin name="org.apache.cordova.device" />
+        <gap:plugin name="org.apache.cordova.geolocation" />
+        <gap:plugin name="org.apache.cordova.network-information" />
+        <gap:plugin name="org.apache.cordova.splashscreen" />
+        <gap:plugin name="org.apache.cordova.vibration" />
+    </widget>

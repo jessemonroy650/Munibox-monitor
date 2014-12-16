@@ -1,0 +1,26 @@
+#munibox_status {margin:0 10%;border:solid black 1px;}
+
+.muniboxoff {padding:0;margin:0;}
+.muniboxz   {padding:0;margin:0;border:solid black 1px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+.muniboxy   {padding:0;margin:0;border:solid black 1px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;background-color:white;}
+.muniboxyB  {padding:0;margin:0;border:solid black 1px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;background-color:#88aaff;}
+.muniboxyG  {padding:0;margin:0;border:solid black 1px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;background-color:lightgreen;}
+.muniboxyR  {padding:0;margin:0;border:solid black 1px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;background-color:#ff0000;}
+
+#logo    {float:left;margin:0.1em 4%;width:40%;}
+#imglogo {float:left;}
+#colo-id {float:right;margin:0.1em 4%;padding:0.2em;width:40%;text-align:left;}
+
+.munibox_button {padding:5px}
+#label-sliders {text-align:center;margin-left:38%;margin-top:1em;}
+#label-sliders > li { width:5em;text-align:center;float:left; }
+
+@media only screen and (min-width:321px) and (max-width:600px) {
+#label-sliders {text-align:center;margin-left:29%}
+}
+
+@media only screen and (max-width:320px) {
+#label-sliders {text-align:center;margin-left:12%}
+#logo {margin:0;padding:0;}
+#colo-id {margin:0;padding:0.1em;}
+}
